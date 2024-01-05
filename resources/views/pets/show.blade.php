@@ -12,46 +12,56 @@
 </head>
 <body>
 
-@if(isset($pet))
-    <p>ID: {{ $pet['id'] }}</p>
-    <p>Name: {{ $pet['name'] }}</p>
-    <p>Status: {{ $pet['status'] }}</p>
+@if(isset($pets))
+    @foreach($pets as $pet)
+        @if(isset($pet['id']))
+        <p><h1>ID:</h1> {{ $pet['id'] }}</p>
+        @endif
 
-    <p>Photo Urls: </p>
-    @if(isset($pet['photoUrls']))
-        <div>
-            [
-            @foreach($pet['photoUrls'] as $photoUrl)
-                <p>{{$photoUrl}}</p>
-            @endforeach
-            ]
-        </div>
-    @endif
+        @if(isset($pet['name']))
+        <p><h1>Name:</h1> {{ $pet['name'] }}</p>
+        @endif
 
-    <p>Tags: </p>
-    @if(isset($pet['tags']))
-        <div>
-            [
-            @foreach($pet['tags'] as $tag)
-                <p>{{$tag['id']}}</p>
-                <p>{{$tag['name']}}</p>
-            @endforeach
-            ]
-        </div>
-    @endif
+        @if(isset($pet['status']))
+        <p><h1>Status:</h1> {{ $pet['status'] }}</p>
+        @endif
 
-    <p>Category: </p>
-    @if(isset($pet['category']))
-        <div>
-            [
-            <p>ID: {{$pet['category']['id']}}</p>
-            <p>Name: {{$pet['category']['name']}}</p>
-            ]
-        </div>
-    @endif
+        @if(isset($pet['photoUrls']))
+            <p><h1>Photo Urls:</h1> </p>
+            <div>
+                [
+                @foreach($pet['photoUrls'] as $photoUrl)
+                    <p>{{$photoUrl}}</p>
+                @endforeach
+                ]
+            </div>
+        @endif
 
+        @if(isset($pet['tags']))
+            <p><h1>Tags:</h1> </p>
+            <div>
+                [
+                @foreach($pet['tags'] as $tag)
+                    <p>{{$tag['id']}}</p>
+                    <p>{{$tag['name']}}</p>
+                @endforeach
+                ]
+            </div>
+        @endif
+
+        @if(isset($pet['category']))
+            <p><h1>Category:</h1> </p>
+            <div>
+                [
+                <p>ID: {{$pet['category']['id']}}</p>
+                <p>Name: {{$pet['category']['name']}}</p>
+                ]
+            </div>
+        @endif
+        <br><hr style="margin: 0;border: none;border-top: 5px solid #ccc;"><br>
+    @endforeach
 @endif
 
-<a href="{{ url()->previous() }}">BACK</a><br>
+<a href="/">BACK</a><br>
 </body>
 </html>
